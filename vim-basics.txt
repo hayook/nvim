@@ -1,0 +1,136 @@
+
+    How to quit Vim?
+    	q	to quit and it won't work if there are changes
+	w	to save
+	wq	to save and quit
+	q!	to quit and discard changes
+
+    Modes in Vim
+    	You start by the normal node
+		You press some keys to enter each mode (visual, command, insert)
+		esc	to back to the normal mode from any mode
+	
+	Normal Mode
+	    j		to move down one line
+	    k		to move up one line
+	    h		to move to the left one character
+	    l		to move to the right one character
+	    d		to move one word forward
+	    b		to move one word backward
+	    0		to move to the beginning of the line (after a tab if there is one at the beginning)
+	    $		to move to the end of the line
+	    ^		to place the cursor on the first non-empty (\n) character
+	    g_		to place the cursor on the last non-empty (\n) cursor
+	    gg		to move to the first line of the file
+	    G		to move to the last line of the file
+
+	    i		to enter the insert mode from the left side of the cursor
+	    a		to enter the insert mode from the right side of the cursor
+	    I		to enter the insert mode from the start of the line
+	    A		to enter the insert mode from the end of the line
+	    o		to enter the insert mode after inserting a new line under the current one
+	    O	 	to enter the insert mode after inserting a new line above the current one
+	    cc		to enter the insert mode after removing the current line (change the current line)
+	    s		to enter the insert mode after deleting the current character
+
+	    // Key bindings
+	    v + navigation: to select
+	    d + navigation: to delete
+	    [x: int] + navigation: to move x amount
+	    [x: int] + u: to undo x times
+	    [x: int] + ctl + r: to redo x times 
+	    [x: int] + v: to select x words
+	    [x: int] + p: to paste x times
+	    in general i can bind numbers with any keys to perform actions
+	    and bind any key with navigation keys to perform more actions
+	    key + iw: to perform actioos on a word (diw: delete word, ciw: change word, yiw: copy word)
+	    key + ib|(|): to perform actions on a text inside ()
+	    key + i": to perform actions on a text inside ""
+	    [x: int] + key + iw/ib/i"...: for more bindings choices
+	    t + character: to jump before this character in the same line as the cursor
+	    f + character: to jump to this character in the same line as the cursor
+	    T/F + character: do the same as t/f but backwards
+	    d + t/f + character: to delete till the character
+	    %: to move to the closing/opening (/"/{.. (i have the ability to bind this with d/c/p)
+	    
+	    >>> I have unlimited number of bindings posibilities
+ 	    
+ 
+	    V		to enter the visual mode and selecting the current line
+	    D		to delete the current line when we're in the visual mode and from the current position of the mose to then end of the line when we are in the normal mode
+	    dd		to delete the current line in the normal mode
+	    x		to delete the current character or the selected text
+	    X		to delete the character on the left when we are in the normal mode and the current line when we are in the visual mode 
+
+
+	    // Copy & Paste only inside Vim (not the clipboard)
+	    y		to copy a selected text 
+	    Y		to copy the current line (even if it's not selected)
+	    p		to paste a text on the right of the cursor 
+	    P		to paste a text on the left of the cursor
+		deletion is cutting: when you delete something you actually cutting it and you can paste it somewhere
+
+	    // Scrolling
+	    ctl + y		to scroll up
+	    ctl + e 		to scroll down
+	    zz			to put the current line in the midle
+	    zt 			to put the current line in the top
+	    zb			to put the current line in the bottom
+		ctl + d		scroll a bit more down
+		ctl + u		scroll a bit more up
+	    
+		// Indenting
+		>>		to move the line one tab to the right
+		<<		to move the line one tab to the left
+		==		to auto indent blocks inside {} (like autoformat)
+		and the same thing here there are many bindings to go with
+
+		// Searching
+		/word then press enter to search and find the first result in the file
+		?word then press enter to search and find the last result in the file
+		n	to go the next occurrence (down for / and up ?)
+		N	to go the previous occurrence (up for / and down ?)
+
+		// Marking 
+		m + character	to mark with a character
+		' + character 	to move to a mark
+
+		// Replacing
+		:%s/word/newword/g	to modify the word in the whole file
+		:s/word/newword/g	to modify the word in a selected area
+			after making this if you want to make to run the last substitution on the whole file there is no need to rewrite the command and add % at the beginning just pres g&
+
+		.		to repeat the last action (the action is stored some where to use it later, dw i deleted a word "....." to delete the next five words)
+
+		// Registers 
+		i can read (paste) from and write (copy) to registers in Vim
+		regShortCut + copy/paste commands
+		registers are stored when closing the instance
+		some registers are accessible across other instances of nvim and others not
+
+		// Macros 
+		q[MacroName] to start recording a macro 
+		do some key bindings (sequence of actions)
+		q to stop recoding 
+		go the character that you want to start the macro from
+		press @[MacroName]
+		notes: 
+			The MacroName is a single character a, b, c..
+			The Macro is just a register
+			The macro is accessible acress other nvim instances
+			The Macro is stored when closing the instance (because it's a register)
+
+		// One long Line
+		One big text is treated as one line in vim, so if i want to deal with it as multiple line i prefix navigation keys with g
+		gj/gk/g0/g^/g$/...
+		gqq		: to devide one line to multiple lines
+		gJ		: join lines without spaces
+
+		// Capitalization
+		gu		: to capitalize
+		gU		: to uncapitalize
+		gUU		: to capitalize the whole line
+		guu		: to capitalize the whole line
+		~		: switch the capitalization
+		g~~		: to work on the whole line
+			>> bind these two with anything
